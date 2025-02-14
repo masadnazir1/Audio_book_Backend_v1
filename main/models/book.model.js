@@ -19,7 +19,7 @@ const Book = sequelize.define("Book", {
   category_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "Categories", // Ensure this matches the actual table name for Category
+      model: "Categories",
       key: "id",
     },
     allowNull: false,
