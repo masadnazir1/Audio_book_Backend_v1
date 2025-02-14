@@ -23,7 +23,7 @@ const {
 const SearchBooks = require("../controller/Search.controller");
 const { GetAllCategories } = require("../controller/categories.controller");
 const {
-  getAllCategories,
+  getAllCategoriesPage,
   getCategoryById,
   createCategory,
   updateCategory,
@@ -41,7 +41,7 @@ router.get("/GetMyShelf", GetMyShelf);
 router.post("/AddToMyShelf", AddToMyShelf);
 router.delete("/DelMyShelf", DelMyShelf);
 router.get("/BooksCover/:category/:bookTitle/:imageName", GetCover);
-// router.get("/categories", GetAllCategories);
+router.get("/categories", GetAllCategories);
 router.get("/searchBook", SearchBooks);
 router.get("/users/:id", getUserById);
 
@@ -51,7 +51,7 @@ router.put("/users/:id", updateUser);
 // Delete a user by ID
 router.delete("/users/:id", deleteUser);
 //Categories routes
-router.get("/categories", getAllCategories);
+router.get("/categoriesPage", getAllCategoriesPage);
 router.get("/category/:id", getCategoryById);
 router.post("/category", createCategory);
 router.put("/category/:id", updateCategory);

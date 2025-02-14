@@ -1,7 +1,7 @@
 const Category = require("../models/category.model");
 
 // Get all categories
-const getAllCategories = async (req, res) => {
+const getAllCategoriesPage = async (req, res) => {
   try {
     const categories = await Category.findAll();
     return res.json({ success: true, categories });
@@ -111,7 +111,7 @@ const deleteCategory = async (req, res) => {
 };
 
 module.exports = {
-  getAllCategories,
+  getAllCategoriesPage,
   getCategoryById,
   createCategory,
   updateCategory,
