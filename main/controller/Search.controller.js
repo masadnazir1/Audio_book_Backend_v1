@@ -1,4 +1,5 @@
-const Book = require("../models/book.model"); // Import the model
+const Book = require("../models/book.model");
+const Category = require("../models/category.model");
 const { Op } = require("sequelize");
 
 const SearchBooks = async (req, res) => {
@@ -9,7 +10,7 @@ const SearchBooks = async (req, res) => {
       return res.status(400).json({ error: "Query parameter is required" });
     }
 
-    // Search books using partial match (case-insensitive)
+    // Search books using partial match (case-insensitive) and include category
     const books = await Book.findAll({
       where: {
         [Op.or]: [
@@ -17,6 +18,11 @@ const SearchBooks = async (req, res) => {
           { author: { [Op.iLike]: `%${query}%` } }, // Matches partial author
           { description: { [Op.iLike]: `%${query}%` } }, // Matches partial description
         ],
+      },
+      include: {
+        model: Category,
+        attributes: ["name"], // Fetch category name
+        required: false, // Include category even if a book has no category
       },
     });
 
